@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header"></div>
+			<div class="card-body">
+
+
+				<table class="table table-striped table-bordered">
+					<thead class="thead-inverse">
+						<tr>
+							<th sec:authorize="hasRole('ROLE_USER')">id</th>
+							<th>Cliente</th>
+							<th>descripcion</th>
+<!-- 							<th>condicion</th> -->
+							<th>delegado</th>
+							<th>vehiculo</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')">crear asignacion</th>							
+							<th sec:authorize="hasRole('ROLE_ADMIN')">eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="taller: ${taller}">
+							<td sec:authorize="hasRole('ROLE_USER')"><a
+								class="btn btn-primary btn-xs"
+								th:href="@{/vercliente/} + ${taller.id}" th:text="${tallerid}"></a></td>
+							<td th:text="${taller.cliente.nombre}"></td>
+							<td th:text="${taller.descripcion}"></td>
+<!-- 							<td th:text="${taller.condicion.estadoCondicion}"></td>							 -->
+							<td th:text="${taller.delegador.nombre}"></td>
+							<td th:text="${taller.vehiculo.modelo}"></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+								class="btn btn-success btn-xs"
+								th:href="@{'/factura/form/' + ${taller.cliente.id}}"
+								th:text="'crear factura'"></a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+								class="btn btn-danger btn-xs"
+								th:href="@{/taller/eliminar/} + ${taller.id}" th:text="'eliminar'"
+								onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+						</tr>
+					</tbody>
+
+				</table>
+
+				<nav th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
