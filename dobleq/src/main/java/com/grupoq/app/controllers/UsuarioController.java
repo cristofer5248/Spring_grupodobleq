@@ -38,7 +38,7 @@ import com.grupoq.app.util.paginator.PageRender;
 
 @Controller
 @RequestMapping("/user")
-@SessionAttributes("user")
+@SessionAttributes("usuario")
 public class UsuarioController {
 	protected final Log logger = LogFactory.getLog(this.getClass());
 
@@ -205,7 +205,6 @@ public class UsuarioController {
 		String passfinal = passwordEncoder.encode(pass1);
 		usuario.setPassword(passfinal);
 		usuarioService.save(usuario);
-
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:/user/ver";

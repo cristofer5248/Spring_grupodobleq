@@ -22,16 +22,15 @@
 						<tr>
 							<th
 								th:if="${#request.isUserInRole('ADMIN')} OR ${#request.isUserInRole('USER')}">id</th>
-							<th>Usuario</th>
-							<th>Nombre y apellido</th>
+							<th>User</th>
+							<th>Nombres</th>
 							<th>detalle</th>
 							<th>fecha</th>
+							<th>Taller</th>
+							<th>Estado/color</th>
+							
 							<th
-								th:if="${#request.isUserInRole('USER')}">crear
-								factura</th>
-							<th
-								th:if="${#request.isUserInRole('ADMIN')} OR ${#request.isUserInRole('USER')}">editar</th>
-							<th th:if="${#request.isUserInRole('ADMIN')}">eliminar</th>
+								th:if="${#request.isUserInRole('USER')}">Nuevo flujo</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,20 +43,14 @@
 							<td th:text="${flujo.taller.cliente.email}"></td>
 							<td th:text="${flujo.taller.cliente.nombre}"></td>
 							<td th:text="${flujo.taller.descripcion}"></td>
-							<td th:text="${flujo.taller.createAt}"></td>							
+							<td th:text="${flujo.taller.createAt}"></td>	
+							<td th:text="${flujo.taller.nombreTaller.nombre}"></td>
+							<td th:text="${flujo.estado.nombre}"></td>							
 							<td
 								th:if="${#request.isUserInRole('USER')}"><a
 								class="btn btn-success btn-xs"
-								th:href="@{'/factura/form/' + ${flujo.id}}"
-								th:text="'crear factura'"></a></td>
-							<td
-								th:if="${#request.isUserInRole('ADMIN')} OR ${#request.isUserInRole('USER')}"><a
-								class="btn btn-primary btn-xs"
-								th:href="@{/clienteform/} + ${flujo.id}" th:text="'editar'"></a></td>
-							<td th:if="${#request.isUserInRole('ADMIN')}"><a
-								class="btn btn-danger btn-xs"
-								th:href="@{/cleliminar/} + ${flujo.id}" th:text="'eliminar'"
-								onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+								th:href="@{'/flujo/form/' + ${flujo.id}}"
+								th:text="'nuevo flujo'"></a></td>
 						</tr>
 					</tbody>
 
