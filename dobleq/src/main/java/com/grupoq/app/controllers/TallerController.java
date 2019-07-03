@@ -59,6 +59,12 @@ public class TallerController {
 		return tallerService.findByPlacas(term);
 	}
 
+	@GetMapping(value = "/verflujo/{term}", produces = { "application/json" })
+	public @ResponseBody List<Flujo> todosJson(@PathVariable Long term) {
+		return flujoService.findByTaller_Id(term);
+
+	}
+	
 	@GetMapping(value = "/cargar_delegado/{term}", produces = { "application/json" })
 	public @ResponseBody List<Usuario> cargarDelegado(@PathVariable String term) {
 		return tallerService.findByUsername(term);

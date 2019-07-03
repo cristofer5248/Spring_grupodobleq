@@ -18,10 +18,10 @@ public interface IUsuarioDao extends PagingAndSortingRepository<Usuario, Long> {
 	@Query("select u from Usuario u where u.username like %?1%")
 	public List<Usuario> findByUsernameLike(String term);
 	
-	@Query(value="select * from roles r inner join users u on u.id=r.id;", nativeQuery=true)
+	@Query(value="select * from roles r inner join users u on u.idu=r.id;", nativeQuery=true)
 	public void updaterol(Long param);
 	
-	public Page<Usuario> findByIdNot(Long id,Pageable pageable);
+	public Page<Usuario> findByIduNot(Long id,Pageable pageable);
 	
 	public List<Usuario> findByRoles_AuthorityOrderByUsernameAsc(String param);
 	

@@ -50,7 +50,10 @@ public class UsuarioController {
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
 
+
+	
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = { "/ver" }, method = RequestMethod.GET)
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model,
@@ -67,7 +70,7 @@ public class UsuarioController {
 		Usuario user1 = usuarioService.findByUsername(authentication.getName());
 		Page<Usuario> usuario = null;
 		if (authentication.getName().equals("admin")) {
-			usuario = usuarioService.findByIdNot(user1.getId(), pageRequest);
+			usuario = usuarioService.findByIdNot(user1.getIdu(), pageRequest);
 		} else {
 			usuario = usuarioService.findByRoles_Authority("ROLE_USER", pageRequest);
 		}
@@ -117,7 +120,7 @@ public class UsuarioController {
 		flash.addFlashAttribute("success", "El usuario ahora tiene rol de usuario");
 		return "redirect:/user/ver";
 	}
-
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/form/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
@@ -196,7 +199,7 @@ public class UsuarioController {
 	public String guardar(@Valid Usuario usuario, BindingResult result, Model model, RedirectAttributes flash,
 			SessionStatus status) {
 
-		String mensajeFlash = (usuario.getId() != null) ? "usuario guardado con éxito!" : "usuario editado con éxito!";
+		String mensajeFlash = (usuario.getIdu() != null) ? "usuario guardado con éxito!" : "usuario editado con éxito!";
 		usuario.setEnabled(true);
 		String pass1 = usuario.getPassword();
 		String passfinal = passwordEncoder.encode(pass1);

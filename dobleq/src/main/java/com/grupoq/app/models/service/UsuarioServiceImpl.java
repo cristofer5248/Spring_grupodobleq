@@ -50,7 +50,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Override
 	public Page<Usuario> findByIdNot(Long id, Pageable pageable) {
-		return usuarioDao.findByIdNot(id, pageable);
+		return usuarioDao.findByIduNot(id, pageable);
 	}
 
 	@Override

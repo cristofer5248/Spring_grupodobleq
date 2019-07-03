@@ -36,8 +36,8 @@
 						<tr th:each="usuario: ${usuario}">
 							<td sec:authorize="hasRole('ROLE_USER')"><a
 								class="btn btn-primary btn-xs"
-								th:href="@{/verusuario/} + ${usuario.id}"
-								th:text="${usuario.id}"></a></td>
+								th:href="@{/verusuario/} + ${usuario.idu}"
+								th:text="${usuario.idu}"></a></td>
 							<td th:text="${usuario.nombre}"></td>
 							<td th:text="${usuario.apellidos}"></td>
 							<td th:text="${usuario.correo}"></td>
@@ -45,23 +45,23 @@
 
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
-								th:href="@{/user/desact/} + ${usuario.id}" th:text="'Desactivar'"></a></td>
+								th:href="@{/user/desact/} + ${usuario.idu}" th:text="'Desactivar'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
-								th:href="@{/user/activar/} + ${usuario.id}" th:text="'activar'"></a></td>
+								th:href="@{/user/activar/} + ${usuario.idu}" th:text="'activar'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
-								th:href="@{/user/admin/} + ${usuario.id}"
+								th:href="@{/user/admin/} + ${usuario.idu}"
 								th:text="'Admin'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
-								th:href="@{/user/adminu/} + ${usuario.id}" th:text="'Usuario'"></a></td>
+								th:href="@{/user/adminu/} + ${usuario.idu}" th:text="'Usuario'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
-								th:href="@{/user/form/} + ${usuario.id}" th:text="'editar'"></a></td>
+								th:href="@{/user/form/} + ${usuario.idu}" th:text="'editar'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-danger btn-xs"
-								th:href="@{/user/eliminar/} + ${usuario.id}"
+								th:href="@{/user/eliminar/} + ${usuario.idu}"
 								th:text="'eliminar'"
 								onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
 						</tr>

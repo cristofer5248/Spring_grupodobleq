@@ -3,8 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
 <meta charset="UTF-8" />
-<title
-	th:text="'Grupo Dobleq- ' + ${titulo}"></title>
+<title th:text="'Grupo Dobleq- ' + ${titulo}"></title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
 </head>
@@ -19,24 +18,26 @@
 			</button>
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+					<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
 					<li
 						th:if="${#request.isUserInRole('ADMIN')} OR ${#request.isUserInRole('USER')}"
 						class="nav-item"><a class="nav-link" href="#about"
 						th:href="@{/clientes}">Cliente</a></li>
-					<li class="nav-item"><a class="nav-link" href="#about"
+					<li th:if="${#request.isUserInRole('ADMIN')}" 
+					class="nav-item"><a class="nav-link" href="#about"
 						th:href="@{/vehiculo/vehiculoform}">Vehiculo</a></li>
-					<li
-						th:if="${#request.isUserInRole('ADMIN')} OR ${#request.isUserInRole('USER')}"
+					<li th:if="${#request.isUserInRole('ADMIN')} OR ${#request.isUserInRole('USER')}"
 						class="nav-item"><a class="nav-link" href="#about"
 						th:href="@{/taller/ver}">Talleres</a></li>
 					<li th:if="${#request.isUserInRole('ADMIN')}" class="nav-item"><a
 						class="nav-link" href="#about" th:href="@{/user/ver}">Usuarios</a></li>
 					<li th:if="${#request.isUserInRole('USER')}" class="nav-item"><a
 						class="nav-link" href="#about" th:href="@{/bitacora/ver}">Bitacora</a></li>
-					<li	th:if="!${#request.isUserInRole('ADMIN')} AND !${#request.isUserInRole('USER')}"
+					<li th:if="${#request.isUserInRole('CLIENT')}"
 						class="nav-item"><a class="nav-link" href="#about"
 						th:href="@{/bitacora/ver}">Mi progreso</a></li>
+					<li	class="nav-item"><a class="nav-link" href="#about"
+						th:href="@{/recuperar}">Activar/Recuperar Contraseña</a></li>
 				</ul>
 
 				<ul class="navbar-nav navbar-right">

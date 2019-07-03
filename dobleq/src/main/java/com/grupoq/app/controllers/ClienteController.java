@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,9 +40,12 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.grupoq.app.models.service.IClienteService;
+import com.grupoq.app.models.service.EmailServiceImpl;
 import com.grupoq.app.models.service.IUploadFileService;
+import com.grupoq.app.models.service.IUsuarioService;
 import com.grupoq.app.models.entity.Cliente;
 import com.grupoq.app.models.entity.Taller;
+import com.grupoq.app.models.entity.Usuario;
 //import com.bolsadeideas.springboot.app.models.entity.Cliente;
 //import com.bolsadeideas.springboot.app.models.service.IClienteService;
 //import com.bolsadeideas.springboot.app.models.service.IUploadFileService;
@@ -54,7 +59,16 @@ public class ClienteController {
 
 	@Autowired
 	private IClienteService clienteService;
+	
+	@Autowired
+	private IUsuarioService usuarioService;
 
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private EmailServiceImpl emailService;
+	
 	
 	@Autowired
 	private IUploadFileService uploadFileService;
@@ -213,7 +227,26 @@ public class ClienteController {
 
 		String mensajeFlash = (cliente.getId() != null) ? "Cliente editado con éxito!" : "Cliente creado con éxito!";
 
+		
+		Usuario users = new Usuario();
+		users.setApellidos(cliente.getApellido());
+		users.setNombre(cliente.getNombre());
+		String pass = cliente.getPassword();
+		String pass2 = passwordEncoder.encode(pass);
+		users.setPassword(pass2);
+		users.setUsername(cliente.getEmail());
+		//1- creamos el token sencillo de 4 digitos STRING 000
+		Random rand = new Random();
+		String idp = String.format("%04d", rand.nextInt(10000));
+		users.setRecoverypass(idp);
+		users.setEnabled(true);
+		
+		
 		clienteService.save(cliente);
+		usuarioService.save(users);
+		//aqui se mandara el email		
+
+		emailService.sendSimpleMessage(cliente.getEmail(), "Desde Spring Boot app grupodobleq", "Cuerpo del mensajes:, Esta es su token para iniciar su cuenta: "+idp);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:clientes";

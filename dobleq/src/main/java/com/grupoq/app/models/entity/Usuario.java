@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long idu;
 
 	@Column(unique = true)
 	private String username;
@@ -31,6 +31,7 @@ public class Usuario implements Serializable {
 	private String genero;
 	private String direccion;
 	private Boolean enabled;
+	private String recoverypass;
 
 	@Column(length = 60, unique = true)
 	private String password;
@@ -48,12 +49,12 @@ public class Usuario implements Serializable {
 		taller = new ArrayList<Taller>();
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdu() {
+		return idu;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdu(Long idu) {
+		this.idu = idu;
 	}
 
 	public String getUsername() {
@@ -134,6 +135,16 @@ public class Usuario implements Serializable {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+
+
+	public String getRecoverypass() {
+		return recoverypass;
+	}
+
+	public void setRecoverypass(String recoverypass) {
+		this.recoverypass = recoverypass;
 	}
 
 

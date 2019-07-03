@@ -19,4 +19,6 @@ public interface IFlujoService {
 	public List<Flujo> findByTaller_Id(Long id);
 		
 	public List<Flujo> findByTallerCliente(Long id);
+	
+	public Page<Flujo> findAllPage(Pageable page);
 }

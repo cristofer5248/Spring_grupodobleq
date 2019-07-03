@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -50,6 +52,12 @@ public class Cliente implements Serializable {
 	@Column(length = 60, unique = true)
 	private String password;
 	
+	//very dangerous
+//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "user_id")
+//	private List<Role> roles;
+	
+	//keep out
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_tallerid")
 	private List<Taller> taller;
@@ -116,6 +124,14 @@ public class Cliente implements Serializable {
 		this.taller = taller;
 	}
 	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Override
 	public String toString() {

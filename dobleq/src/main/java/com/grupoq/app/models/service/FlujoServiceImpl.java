@@ -17,10 +17,10 @@ public class FlujoServiceImpl implements IFlujoService {
 
 	@Autowired
 	private IFlujoDao flujoDao;
-	
+
 	@Autowired
 	private IEstadoDao estadoDao;
-	
+
 	@Override
 	public Page<Flujo> findAll(Pageable page) {
 		return flujoDao.findAll(page);
@@ -29,7 +29,7 @@ public class FlujoServiceImpl implements IFlujoService {
 	@Override
 	public void save(Flujo flujo) {
 		flujoDao.save(flujo);
-		
+
 	}
 
 	@Override
@@ -45,6 +45,11 @@ public class FlujoServiceImpl implements IFlujoService {
 	@Override
 	public List<Flujo> findByTaller_Id(Long id) {
 		return flujoDao.findByTaller_Id(id);
+	}
+
+	@Override
+	public Page<Flujo> findAllPage(Pageable page) {
+		return flujoDao.findAll(page);
 	}
 
 }
