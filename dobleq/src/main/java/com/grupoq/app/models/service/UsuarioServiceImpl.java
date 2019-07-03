@@ -80,4 +80,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		
 	}
 
+	@Override
+	public Usuario findByUsernameByRecoverypass(String user, String code) {
+		return usuarioDao.findByUsernameAndRecoverypass(user, code);
+	}
+
 }

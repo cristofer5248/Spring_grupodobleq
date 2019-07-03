@@ -30,6 +30,8 @@ public interface IClienteService {
 	
 	public List<Servicios> findByNombre(String term);
 	
+	public Cliente findByEmail(String correo);
+	
 	public void saveFactura(Factura factura);
 	
 	public Servicios findProductoById(Long id);

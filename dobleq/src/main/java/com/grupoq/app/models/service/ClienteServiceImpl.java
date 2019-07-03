@@ -111,4 +111,9 @@ public class ClienteServiceImpl implements IClienteService {
 		return tallerDao.findByIdTallerWithClienteWithFactura(id);
 	}
 
+	@Override
+	public Cliente findByEmail(String correo) {
+		return clienteDao.findByEmail(correo);
+	}
+
 }

@@ -1,4 +1,4 @@
-INSERT INTO users (apellidos,nombre,username, password, enabled,telefono) VALUES('Carlos','Hernandez','andres', '$2a$10$pXSjZhKajePgUvQZplTkOuA6n4ee/wHaOF/UJWornHmRxhN3D0Cd6', 1,71208113);
+INSERT INTO users (apellidos,nombre,username, password, enabled,telefono,correo) VALUES('Carlos','Hernandez','andres', '$2a$10$pXSjZhKajePgUvQZplTkOuA6n4ee/wHaOF/UJWornHmRxhN3D0Cd6', 1,71208113,'christopher.emm01@gmail.com');
 INSERT INTO users (apellidos,nombre,username, password, enabled,telefono) VALUES('Vanessa','Ramirez','admin', '$2a$10$pLiT5n4R/wOZ8SyKgNvvOeRuMd07/m9QzguNQFJPfphWUB0ktQ2zS', 1,83208113);
 INSERT INTO users (apellidos,nombre,username, password, enabled,telefono) VALUES('Juan','Carlos','JUAK', '$2a$10$fpZ3pU63UnhsJcAPopsz1.hBzYFe5ptoCXcP4UXkqwv8MBwdHV6x6', 1,7220853);
 INSERT INTO users (apellidos,nombre,username, password, enabled,telefono) VALUES('Marlon','Perez','MP123', '$2a$10$IBncau/R54WrXROHE/QEnObji7HOoH5TjrLQSzuJnoVsVlSF73stO', 1,7283113);

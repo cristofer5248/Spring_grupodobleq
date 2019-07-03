@@ -26,11 +26,14 @@ public class Usuario implements Serializable {
 	private String username;
 	private String nombre;
 	private String apellidos;
+	@Column(unique = true)
 	private String correo;
 	private int telefono;
 	private String genero;
 	private String direccion;
 	private Boolean enabled;
+	
+	@Column(length = 10)
 	private String recoverypass;
 
 	@Column(length = 60, unique = true)

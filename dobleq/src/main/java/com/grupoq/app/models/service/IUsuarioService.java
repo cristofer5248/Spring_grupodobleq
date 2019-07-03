@@ -17,6 +17,8 @@ public interface IUsuarioService {
 	public Page<Usuario> findByIdNot(Long id,Pageable pageable);
 	public Page<Usuario> findByRoles_Authority(String param,Pageable pageable);
 	
+	public Usuario findByUsernameByRecoverypass(String user, String code);
+	
 	public void delete(Long id);
 	
 	public Usuario findOne(Long id);

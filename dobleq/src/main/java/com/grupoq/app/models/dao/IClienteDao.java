@@ -10,4 +10,6 @@ public interface IClienteDao extends PagingAndSortingRepository<Cliente, Long> {
 
 	@Query("select c from Cliente c left join fetch c.taller t where c.id=?1")
 	public Cliente fetchByIdWithTallerWithFactura(Long id);
+	
+	public Cliente findByEmail(String correo);
 }

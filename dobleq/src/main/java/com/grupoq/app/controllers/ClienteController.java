@@ -40,10 +40,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.grupoq.app.models.service.IClienteService;
-import com.grupoq.app.models.service.EmailServiceImpl;
 import com.grupoq.app.models.service.IUploadFileService;
 import com.grupoq.app.models.service.IUsuarioService;
 import com.grupoq.app.models.entity.Cliente;
+import com.grupoq.app.models.entity.Role;
 import com.grupoq.app.models.entity.Taller;
 import com.grupoq.app.models.entity.Usuario;
 //import com.bolsadeideas.springboot.app.models.entity.Cliente;
@@ -66,8 +66,6 @@ public class ClienteController {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	@Autowired
-	private EmailServiceImpl emailService;
 	
 	
 	@Autowired
@@ -244,9 +242,14 @@ public class ClienteController {
 		
 		clienteService.save(cliente);
 		usuarioService.save(users);
+		
+		Role rol = new Role();
+		rol.setAuthority("ROLE_CLIENT");
+		rol.setUser_id(usuarioService.findByUsername(cliente.getEmail()).getIdu());
+		usuarioService.saveRol(rol);
 		//aqui se mandara el email		
 
-		emailService.sendSimpleMessage(cliente.getEmail(), "Desde Spring Boot app grupodobleq", "Cuerpo del mensajes:, Esta es su token para iniciar su cuenta: "+idp);
+//		emailService.sendSimpleMessage(cliente.getEmail(), "Desde Spring Boot app grupodobleq", "Cuerpo del mensajes:, Esta es su token para iniciar su cuenta: "+idp);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:clientes";

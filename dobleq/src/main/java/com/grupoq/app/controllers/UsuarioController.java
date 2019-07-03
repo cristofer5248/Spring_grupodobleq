@@ -78,7 +78,7 @@ public class UsuarioController {
 
 //				clienteService.findAll(pageRequest);
 
-		PageRender<Usuario> pageRender = new PageRender<Usuario>("/ver", usuario);
+		PageRender<Usuario> pageRender = new PageRender<Usuario>("/user/ver", usuario);
 		model.addAttribute("titulo", "Listado de clientes");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("page", pageRender);
@@ -152,18 +152,18 @@ public class UsuarioController {
 			usuario = usuarioService.findOne(id);
 			if (usuario == null) {
 				flash.addFlashAttribute("error", "El ID del cliente no existe en la BBDD!");
-				return "redirect:/listar";
+				return "redirect:/user/ver";
 			}
 		} else {
 			flash.addFlashAttribute("error", "El ID del cliente no puede ser cero!");
-			return "redirect:/listar";
+			return "redirect:/user/ver";
 		}
 
 		usuario.setEnabled(false);
 		usuarioService.save(usuario);
 		model.put("usuario", usuario);
 		model.put("titulo", "Usuarios");
-		return "redirect:/users/ver";
+		return "redirect:/user/ver";
 	}
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/activar/{id}")
@@ -175,18 +175,18 @@ public class UsuarioController {
 			usuario = usuarioService.findOne(id);
 			if (usuario == null) {
 				flash.addFlashAttribute("error", "El ID del cliente no existe en la BBDD!");
-				return "redirect:/listar";
+				return "redirect:/user/ver";
 			}
 		} else {
 			flash.addFlashAttribute("error", "El ID del cliente no puede ser cero!");
-			return "redirect:/listar";
+			return "redirect:/user/ver";
 		}
 
 		usuario.setEnabled(true);
 		usuarioService.save(usuario);
 		model.put("usuario", usuario);
 		model.put("titulo", "Usuarios");
-		return "redirect:/users/ver";
+		return "redirect:/user/ver";
 	}
 
 	@GetMapping(value = "/carga_tipou", produces = { "application/json" })

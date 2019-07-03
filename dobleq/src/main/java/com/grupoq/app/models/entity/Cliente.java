@@ -49,7 +49,7 @@ public class Cliente implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createAt;
 	
-	@Column(length = 60, unique = true)
+	@Column(length = 60, unique = false)
 	private String password;
 	
 	//very dangerous
