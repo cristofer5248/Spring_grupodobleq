@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "estados")
 public class Estado implements Serializable {
@@ -20,6 +22,7 @@ public class Estado implements Serializable {
 	private Long id;
 	private String nombre;
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "estados_id")
 	private List<Flujo> flujo;

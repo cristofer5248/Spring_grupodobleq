@@ -52,4 +52,9 @@ public class FlujoServiceImpl implements IFlujoService {
 		return flujoDao.findAll(page);
 	}
 
+	@Override
+	public List<Estado> findAllEstado() {
+		return (List<Estado>)estadoDao.findAll();
+	}
+
 }

@@ -9,6 +9,8 @@ import com.grupoq.app.models.entity.Estado;
 import com.grupoq.app.models.entity.Flujo;
 
 public interface IFlujoService {
+	
+	public List<Estado> findAllEstado();
 
 	public Page<Flujo> findAll(Pageable page);
 	

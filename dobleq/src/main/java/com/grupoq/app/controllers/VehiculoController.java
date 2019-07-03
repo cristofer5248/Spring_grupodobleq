@@ -55,7 +55,7 @@ public class VehiculoController {
 		automovilService.saveFactura(vehiculo);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
-		return "redirect:/vehiculoform";
+		return "redirect:/vehiculo/vehiculoform";
 	}
 
 }

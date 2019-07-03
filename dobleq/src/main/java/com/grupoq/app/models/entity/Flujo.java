@@ -40,6 +40,8 @@ public class Flujo implements Serializable {
 	@JoinColumn(name = "bitacora_id_flujo")
 	private List<Bitacora> bitacora;
 	
+	private String foto="";
+	
 	
 	public Long getId() {
 		return id;
@@ -90,6 +92,17 @@ public class Flujo implements Serializable {
 
 	public void setTaller(Taller taller) {
 		this.taller = taller;
+	}
+
+
+
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 

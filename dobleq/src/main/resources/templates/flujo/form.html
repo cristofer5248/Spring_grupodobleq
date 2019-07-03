@@ -11,45 +11,46 @@
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
 
-				<div th:object="${vehiculo}" th:remove="tag">
+				<div th:object="${flujo}" th:remove="tag">
 					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 						role="alert">
 						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 					</ul>
 				</div>
+				<form th:action="@{/flujo/save}" th:object="${flujo}" method="post"
+					enctype="multipart/form-data">
 
-				<form th:action="@{/vehiculo/vehiculosave}" th:object="${vehiculo}"
-					method="post" enctype="multipart/form-data">
 					<div class="form-group row">
-						<label for="nombre" class="col-sm-2 col-form-label">Detalles</label>
+						<label for="cargar_servicios" class="col-sm-2 col-form-label"
+							th:text="'Servicios'"></label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{detalles}" class="form-control"
+							<input type="text" th:field="*{servicios}"
+								name="cargar_servicios" id="cargar_servicios"
+								class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="cargar_estadosf" class="col-sm-2 col-form-label"
+							th:text="flujo"></label>
+						<div class="col-sm-6">
+							<select th:field="*{estado}" id="cargar_estadosf"
+								class="custom-select mr-sm-2">
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="comentario" class="col-sm-2 col-form-label">Comentario</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{comentario}" class="form-control"
 								th:errorclass="'form-control alert-danger'" /> <small
 								class="form-text text-danger"></small>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="marca" class="col-sm-2 col-form-label">Marca</label>
+						<label for="file" class="col-sm-2 col-form-label">Foto</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{marca}" class="form-control"
-								th:errorclass="'form-control alert-danger'" /> <small
-								class="form-text text-danger"></small>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="modelo" class="col-sm-2 col-form-label">Modelo</label>
-						<div class="col-sm-6">
-							<input type="text" th:field="*{modelo}" class="form-control"
-								th:errorclass="'form-control alert-danger'" /> <small
-								class="form-text text-danger"></small>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="createAt" class="col-sm-2 col-form-label">Placas</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" th:field="*{placas}"
-								th:errorclass="'form-control alert-danger'" /> <small
-								class="form-text text-danger"></small>
+							<input type="file" name="file" class="form-control" />
 						</div>
 					</div>
 
@@ -65,5 +66,6 @@
 	</div>
 
 	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:replace="flujo/js/autocomplete-productos :: javascript"></script>
 </body>
 </html>
