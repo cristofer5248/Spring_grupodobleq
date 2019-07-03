@@ -66,7 +66,8 @@ public class Cliente implements Serializable {
 		taller = new ArrayList<Taller>();
 	}
 
-	private String foto;
+	@Column(length = 100)
+	private String foto="";
 	
 	public Long getId() {
 		return id;

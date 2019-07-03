@@ -85,4 +85,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		return usuarioDao.findByUsernameAndRecoverypass(user, code);
 	}
 
+	@Override
+	public Usuario findByidu(Long id) {
+		return usuarioDao.findByidu(id);
+	}
+
 }

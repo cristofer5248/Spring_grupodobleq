@@ -80,7 +80,7 @@ const url2 = "/taller/cargar_usuariosTodos";
 //populate dropdown list wujuu
 $.getJSON(url2,function(data){
 	$.each(data,function(key,entry){
-		delegado.append($('<option></option>').attr('value',entry.id).text(entry.username));
+		delegado.append($('<option></option>').attr('value',entry.idu).text(entry.username));
 	})
 });
 			

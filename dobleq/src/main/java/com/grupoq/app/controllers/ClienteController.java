@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -59,15 +58,13 @@ public class ClienteController {
 
 	@Autowired
 	private IClienteService clienteService;
-	
+
 	@Autowired
 	private IUsuarioService usuarioService;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
-	
-	
+
 	@Autowired
 	private IUploadFileService uploadFileService;
 
@@ -225,29 +222,40 @@ public class ClienteController {
 
 		String mensajeFlash = (cliente.getId() != null) ? "Cliente editado con éxito!" : "Cliente creado con éxito!";
 
-		
 		Usuario users = new Usuario();
+		System.out.print("codigoo id del cliente a editar: " + cliente.getId());
+		boolean esnuevo = false;
+		if (cliente.getId() != null) {
+			esnuevo = true;
+			System.out.print("Cambiamos valor es nuevo: "+esnuevo);
+			users = usuarioService.findByUsername(cliente.getEmail());
+		}
 		users.setApellidos(cliente.getApellido());
 		users.setNombre(cliente.getNombre());
 		String pass = cliente.getPassword();
 		String pass2 = passwordEncoder.encode(pass);
 		users.setPassword(pass2);
 		users.setUsername(cliente.getEmail());
-		//1- creamos el token sencillo de 4 digitos STRING 000
-		Random rand = new Random();
-		String idp = String.format("%04d", rand.nextInt(10000));
-		users.setRecoverypass(idp);
+//		// 1- creamos el token sencillo de 4 digitos STRING 000
+//		Random rand = new Random();
+//		String idp = String.format("%04d", rand.nextInt(10000));
+//		users.setRecoverypass(idp);
 		users.setEnabled(true);
-		
-		
 		clienteService.save(cliente);
 		usuarioService.save(users);
-		
+		System.out.print("codigoo id del cliente a editar: " + cliente.getId());
+		System.out.print("vemos el valor: "+esnuevo);
+		if(!esnuevo) {
 		Role rol = new Role();
 		rol.setAuthority("ROLE_CLIENT");
 		rol.setUser_id(usuarioService.findByUsername(cliente.getEmail()).getIdu());
 		usuarioService.saveRol(rol);
-		//aqui se mandara el email		
+		}
+
+		
+
+
+		// aqui se mandara el email
 
 //		emailService.sendSimpleMessage(cliente.getEmail(), "Desde Spring Boot app grupodobleq", "Cuerpo del mensajes:, Esta es su token para iniciar su cuenta: "+idp);
 		status.setComplete();

@@ -21,6 +21,8 @@ public interface IUsuarioService {
 	
 	public void delete(Long id);
 	
+	public Usuario findByidu(Long id);
+	
 	public Usuario findOne(Long id);
 	public void save(Usuario user);
 	
