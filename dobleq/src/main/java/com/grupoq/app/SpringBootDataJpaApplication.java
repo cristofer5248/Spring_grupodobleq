@@ -23,9 +23,9 @@ public class SpringBootDataJpaApplication implements CommandLineRunner{
 	public void run(String... args)throws Exception{
 		//probador
 		String password="12345";
-		for(int i=0; i<4; i++) {
+		for(int i=0; i<2; i++) {
 			String bcryptPassword = passwordEncoder.encode(password);
-			System.out.print(bcryptPassword);
+			System.out.print(bcryptPassword+" APARTE");
 		}
 	}
 

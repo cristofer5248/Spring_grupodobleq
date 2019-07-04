@@ -228,10 +228,11 @@ public class ClienteController {
 		if (cliente.getId() != null) {
 			esnuevo = true;
 			System.out.print("Cambiamos valor es nuevo: "+esnuevo);
-			users = usuarioService.findByUsername(cliente.getEmail());
+			users = usuarioService.findByUsername(cliente.getEmail());			
 		}
 		users.setApellidos(cliente.getApellido());
 		users.setNombre(cliente.getNombre());
+		users.setCorreo(cliente.getEmail());
 		String pass = cliente.getPassword();
 		String pass2 = passwordEncoder.encode(pass);
 		users.setPassword(pass2);
@@ -271,6 +272,19 @@ public class ClienteController {
 			Cliente cliente = clienteService.findOne(id);
 
 			clienteService.delete(id);
+//			Usuario usuario1 = new Usuario();
+//			usuario1.setApellidos(cliente.getApellido());
+//			usuario1.setCorreo(cliente.getEmail());
+//			usuario1.setDireccion(null);
+//			usuario1.setEnabled(true);
+//			usuario1.setGenero(null);
+//			usuario1.setNombre(cliente.getNombre());
+//			usuario1.setPassword(passwordEncoder.encode("12345"));
+//			
+//			
+//			usuario1.setTelefono(7+(int)(Math.random() * 1000 + 1));
+//			usuario1.setCorreo(cliente.getEmail());
+//			usuarioService.save(usuario1);
 			flash.addFlashAttribute("success", "Cliente eliminado con éxito!");
 
 			if (uploadFileService.delete(cliente.getFoto())) {
