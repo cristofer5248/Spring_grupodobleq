@@ -68,7 +68,6 @@ public class ClienteController {
 	@Autowired
 	private IUploadFileService uploadFileService;
 
-	@Secured({ "ROLE_USER" })
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 
@@ -84,6 +83,12 @@ public class ClienteController {
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
+	}
+	
+	
+	@RequestMapping(value = "/logincliente")
+	public String iralclienteWEB() {
+		return "clienteweb/login.html";
 	}
 
 	@PreAuthorize("hasRole('ROLE_USER')")

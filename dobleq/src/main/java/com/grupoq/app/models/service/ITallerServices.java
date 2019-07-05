@@ -35,6 +35,8 @@ public interface ITallerServices {
 	
 	public Taller findByOne(Long id);
 	
+	public Taller findTopByOrderByCliente_IdDesc(Long id);
+	
 	public Taller findByActivo(Long param, Boolean param2);
 	
 	public Page<Taller> findAll(Pageable pageable);

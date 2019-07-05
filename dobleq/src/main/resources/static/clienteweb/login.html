@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Grupo Dobleq- null</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.2/dist/bootstrap-table.min.css">
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<header> </header>
+
+	<div class="container py-4">
+
+		<div class="card border-primary text-center">
+			<div class="card-header">Por favor Sign In!</div>
+			<div class="card-body">
+
+				<form class="form-group" id="form1">
+					<input type="hidden" name="_csrf"
+						value="91655200-475a-416b-8466-6068e8d4eaf2" />
+
+					<div class="form-group col-sm-6">
+						<input type="text" name="username" id="username"
+							class="form-control" placeholder="UserName" autofocus required />
+					</div>
+
+					<div class="form-group col-sm-6">
+						<input type="password" name="password" id="password"
+							class="form-control" placeholder="Password" required />
+					</div>
+
+					<div class="form-group col-sm-6" id="mysubmit">
+						<input type="submit" class="btn btn-lg btn-primary btn-block"
+							value="Sign In" />
+					</div>
+
+
+				</form>
+
+			</div>
+
+		</div>
+		<div id="feedback">
+		<div id="buttonplace">
+		<form id="buttonplaceform">
+		</form>		
+		</div>
+			<table id="example" class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+						<th id="id">Id</th>
+						<th id="estado.nombre">Estado</th>
+						<th id="foto">Foto</th>											
+					</tr>
+					
+				</thead>
+			</table>
+		</div>
+
+	</div>
+
+
+	<footer class="container">
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Bootstrap JS -->
+		
+		<script src="/js/jquery-3.2.1.min.js"></script>
+		<script src="/js/jquery-ui.min.js"></script>
+		<script src="/js/popper.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>		
+		<script src="/js/main.js"></script>	
+	</footer>
+</body>
+</html>

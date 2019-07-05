@@ -17,6 +17,7 @@ public interface IFlujoService {
 	public List<Flujo> findByTaller_Cliente_Id(String id);
 
 	public Page<Flujo> findAll(Pageable page);
+	public Page<Flujo> findAllByOrderByIdDesc(Pageable page);
 	
 	public void save(Flujo flujo);
 	

@@ -67,4 +67,9 @@ public class FlujoServiceImpl implements IFlujoService {
 		return flujoDao.findById(id).orElse(null);
 	}
 
+	@Override
+	public Page<Flujo> findAllByOrderByIdDesc(Pageable page) {
+		return flujoDao.findAllByOrderByIdDesc(page);
+	}
+
 }

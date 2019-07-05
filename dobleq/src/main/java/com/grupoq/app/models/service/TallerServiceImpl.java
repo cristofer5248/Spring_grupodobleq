@@ -130,4 +130,9 @@ public class TallerServiceImpl implements ITallerServices {
 		return usuarioDao.findByRoles_AuthorityOrderByUsernameAsc(param);
 	}
 
+	@Override
+	public Taller findTopByOrderByCliente_IdDesc(Long id) {
+		return tallerDao.findTopByCliente_IdOrderByIdDesc(id);
+	}
+
 }

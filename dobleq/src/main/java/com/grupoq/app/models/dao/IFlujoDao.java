@@ -2,6 +2,8 @@ package com.grupoq.app.models.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -14,7 +16,7 @@ public interface IFlujoDao extends PagingAndSortingRepository<Flujo, Long> {
 	
 	public List<Flujo> findByTaller_Id(Long id);
 	
-	
+	public Page<Flujo> findAllByOrderByIdDesc(Pageable page);
 	
 	public List<Flujo> findByTaller_Cliente_Email(String id);
 	

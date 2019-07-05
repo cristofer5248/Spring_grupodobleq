@@ -50,7 +50,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Override
 	public Page<Usuario> findByIdNot(Long id, Pageable pageable) {
-		return usuarioDao.findByIduNot(id, pageable);
+		return usuarioDao.findByIduNotAndCliNot(id, pageable,true);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Override
 	public Page<Usuario> findByRoles_Authority(String param, Pageable pageable) {
-		return usuarioDao.findByRoles_Authority("ROLE_USER", pageable);
+		return usuarioDao.findByRoles_AuthorityAndCliNot("ROLE_USER", pageable,true);
 	}
 
 	@Override
@@ -88,6 +88,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	@Override
 	public Usuario findByidu(Long id) {
 		return usuarioDao.findByidu(id);
+	}
+
+	@Override
+	public Usuario findByUsernameAndCliNot(String user, Boolean noes) {
+		return usuarioDao.findByUsername(user);
 	}
 
 }

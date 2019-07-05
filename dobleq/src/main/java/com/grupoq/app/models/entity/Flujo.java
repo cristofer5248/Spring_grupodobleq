@@ -14,7 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 
 @Entity
@@ -37,7 +38,7 @@ public class Flujo implements Serializable {
 	@JoinColumn(name="servicio_flujo")
 	private Servicios servicios;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"factura","flujo"})
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="taller_flujo")
 	private Taller taller;

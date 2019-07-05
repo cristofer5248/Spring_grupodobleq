@@ -12,6 +12,7 @@ public interface IUsuarioService {
 	public List<Usuario> findAll();
 	
 	public Page<Usuario> findAll(Pageable pageable);
+	public Usuario findByUsernameAndCliNot(String user,Boolean noes);
 	
 	public Usuario findByUsername(String user);
 	public Page<Usuario> findByIdNot(Long id,Pageable pageable);

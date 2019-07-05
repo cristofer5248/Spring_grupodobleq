@@ -40,5 +40,7 @@ public interface ITallerDao extends PagingAndSortingRepository<Taller, Long> {
 	
 	@Query(value="select * from talleres t inner join clientes c on c.id=t.cliente_tallerid where c.id=:param order by t.idt desc limit 1", nativeQuery = true)
 	public Taller findTopByCliente_IdWithOrderByIdtDsc(@Param("param")Long id);
+	
+	public Taller findTopByCliente_IdOrderByIdDesc(Long id);
 
 }

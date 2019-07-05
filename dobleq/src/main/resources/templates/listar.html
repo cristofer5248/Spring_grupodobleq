@@ -13,7 +13,7 @@
 			<div class="card-body">
 
 				<h4 class="card-title">
-					<a th:if="${#request.isUserInRole('ADMIN')} OR ${#request.isUserInRole('USER')}"
+					<a th:if="${#request.isUserInRole('ADMIN')}"
 						th:href="@{/clienteform}" class="btn btn-primary btn-xs">crear
 						cliente</a>
 				</h4>

@@ -32,6 +32,7 @@ public class Usuario implements Serializable {
 	private String genero;
 	private String direccion;
 	private Boolean enabled;
+	private Boolean cli=true;
 	
 	@Column(length = 10)
 	private String recoverypass;
@@ -148,6 +149,16 @@ public class Usuario implements Serializable {
 
 	public void setRecoverypass(String recoverypass) {
 		this.recoverypass = recoverypass;
+	}
+
+
+
+	public Boolean getCli() {
+		return cli;
+	}
+
+	public void setCli(Boolean cli) {
+		this.cli = cli;
 	}
 
 

@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
-
 import com.grupoq.app.models.entity.Usuario;
 
 public interface IUsuarioDao extends PagingAndSortingRepository<Usuario, Long> {
@@ -21,11 +20,11 @@ public interface IUsuarioDao extends PagingAndSortingRepository<Usuario, Long> {
 	@Query(value="select * from roles r inner join users u on u.idu=r.id;", nativeQuery=true)
 	public void updaterol(Long param);
 	
-	public Page<Usuario> findByIduNot(Long id,Pageable pageable);
+	public Page<Usuario> findByIduNotAndCliNot(Long id,Pageable pageable,Boolean noes);
 	
 	public List<Usuario> findByRoles_AuthorityOrderByUsernameAsc(String param);
 	
-	public Page<Usuario> findByRoles_Authority(String param,Pageable pageable);
+	public Page<Usuario> findByRoles_AuthorityAndCliNot(String param,Pageable pageable, Boolean noes);
 	
 	public Usuario findByUsernameAndRecoverypass(String user, String code);
 	
@@ -34,6 +33,5 @@ public interface IUsuarioDao extends PagingAndSortingRepository<Usuario, Long> {
 	@Modifying
 	@Query(value="insert into roles values(null,:param2,:param);", nativeQuery=true)
 	public void saveRolNative(@Param("param")Long id, @Param("param2")String rol);
-	
 	
 }

@@ -64,7 +64,7 @@ public class TallerController {
 		return flujoService.findByTaller_Id(term);
 
 	}
-	
+
 	@GetMapping(value = "/cargar_delegado/{term}", produces = { "application/json" })
 	public @ResponseBody List<Usuario> cargarDelegado(@PathVariable String term) {
 		return tallerService.findByUsername(term);
@@ -84,7 +84,6 @@ public class TallerController {
 		return list2;
 	}
 
-
 	@GetMapping(value = "/cargar_nombretallerTodos", produces = { "application/json" })
 	public @ResponseBody List<NombreTaller> todosJson() {
 		List<NombreTaller> list = tallerService.findAllNombreTaller();
@@ -100,7 +99,16 @@ public class TallerController {
 		return list;
 	}
 
-	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@RequestMapping(value = "/activar_express/{param}", method = RequestMethod.GET)
+	public void activarTallerexpress(@PathVariable(value = "param") Long id) {
+		Taller taller = tallerService.findByOne(id);
+		taller.setTexpress(false);
+		tallerService.save(taller);
+
+		
+	}
+
+	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@RequestMapping(value = { "/ver" }, method = RequestMethod.GET)
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model,
 			Authentication authentication, HttpServletRequest request) {
@@ -175,8 +183,8 @@ public class TallerController {
 		Flujo flujo = new Flujo();
 
 		taller.setActivof(false);
-		if(taller.getNombreTaller().getId()==1) {
-		taller.setTexpress(true);
+		if (taller.getNombreTaller().getId() != 2) {
+			taller.setTexpress(true);
 		}
 		taller.setEmitidoa(true);
 		tallerService.save(taller);

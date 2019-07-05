@@ -79,7 +79,7 @@ public class UsuarioController {
 //				clienteService.findAll(pageRequest);
 
 		PageRender<Usuario> pageRender = new PageRender<Usuario>("/user/ver", usuario);
-		model.addAttribute("titulo", "Listado de clientes");
+		model.addAttribute("titulo", "Listado de Usuarios");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("page", pageRender);
 		return "users/ver";
@@ -204,6 +204,7 @@ public class UsuarioController {
 		String pass1 = usuario.getPassword();
 		String passfinal = passwordEncoder.encode(pass1);
 		usuario.setPassword(passfinal);
+		usuario.setCli(false);
 		usuarioService.save(usuario);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);

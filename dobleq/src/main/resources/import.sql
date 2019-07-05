@@ -54,6 +54,9 @@ INSERT INTO users (idu, apellidos, correo, direccion, enabled, genero, nombre, p
 INSERT INTO users (idu, apellidos, correo, direccion, enabled, genero, nombre, password, recoverypass, telefono, username) VALUES(28, 'Stiles', 'john.stiles@gmail.com', NULL, 1, NULL, 'John', '$2a$10$R88Quwt9DsVXbc2lmzZdlehir0TDLtd7Rs8gQw5WW6hxl6/QYzJ0W', NULL, 709, NULL);
 INSERT INTO users (idu, apellidos, correo, direccion, enabled, genero, nombre, password, recoverypass, telefono, username) VALUES(29, 'Roe', 'stiles.roe@gmail.com', NULL, 1, NULL, 'Richard', '$2a$10$NgbkJRciWWKsuogsR.MTYuK05LePEsZy.xOe4FPHzeaImNBv.Dk2e', NULL, 234, NULL);
 
+update users set cli=true where idu>4;
+update users set cli=false where idu<5;
+
 INSERT INTO roles (user_id, authority) VALUES(1, 'ROLE_USER');
 INSERT INTO roles (user_id, authority) VALUES(2, 'ROLE_ADMIN');
 INSERT INTO roles (user_id, authority) VALUES(3, 'ROLE_ADMIN');

@@ -34,10 +34,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="usuario: ${usuario}">
-							<td sec:authorize="hasRole('ROLE_USER')"><a
-								class="btn btn-primary btn-xs"
-								th:href="@{/verusuario/} + ${usuario.idu}"
-								th:text="${usuario.idu}"></a></td>
+							<td th:text="${usuario.idu}"></td>
 							<td th:text="${usuario.nombre}"></td>
 							<td th:text="${usuario.apellidos}"></td>
 							<td th:text="${usuario.correo}"></td>
@@ -45,14 +42,14 @@
 
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
-								th:href="@{/user/desact/} + ${usuario.idu}" th:text="'Desactivar'"></a></td>
+								th:href="@{/user/desact/} + ${usuario.idu}"
+								th:text="'Desactivar'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
 								th:href="@{/user/activar/} + ${usuario.idu}" th:text="'activar'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
-								th:href="@{/user/admin/} + ${usuario.idu}"
-								th:text="'Admin'"></a></td>
+								th:href="@{/user/admin/} + ${usuario.idu}" th:text="'Admin'"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								class="btn btn-primary btn-xs"
 								th:href="@{/user/adminU/} + ${usuario.idu}" th:text="'Usuario'"></a></td>

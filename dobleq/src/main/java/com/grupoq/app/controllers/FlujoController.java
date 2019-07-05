@@ -71,7 +71,7 @@ public class FlujoController {
 		Pageable pageRequest = PageRequest.of(page, 4);
 
 //		Usuario user1 = usuarioService.findByUsername(authentication.getName());
-		Page<Flujo> flujo = flujoService.findAll(pageRequest);
+		Page<Flujo> flujo = flujoService.findAllByOrderByIdDesc(pageRequest);
 		PageRender<Flujo> pageRender = new PageRender<Flujo>("/flujo/ver", flujo);
 		model.addAttribute("titulo", "Flujo de procesos");
 		model.addAttribute("flujo", flujo);
@@ -85,7 +85,7 @@ public class FlujoController {
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();		
 
 //		Usuario user1 = usuarioService.findByUsername(authentication.getName());
-		Taller taller = tallerService.findByOne(id);
+		Taller taller = tallerService.findTopByOrderByCliente_IdDesc(id);
 		Flujo flujo = new Flujo();
 		flujo.setTaller(taller);
 		model.put("titulo", "Nuevo Flujo de procesos");
