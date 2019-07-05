@@ -70,7 +70,7 @@
 							<td th:text="'$'+${factura.servicios.precio}"></td>
 
 							<td class="price"
-								th:text="'$'+${#numbers.formatDecimal(factura.cantidad * factura.servicios.precio,1,'DEFAULT',2,'DEFAULT')}"></td>
+								th:text="${#numbers.formatDecimal(factura.cantidad * factura.servicios.precio,1,'POINT',2,'POINT')}"></td>
 							<!-- 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a -->
 							<!-- 								class="btn btn-primary btn-xs" -->
 							<!-- 								th:href="@{'/factura/ver/' + ${factura.id}}" th:text="'detalle'"></a></td> -->
@@ -85,6 +85,7 @@
 				</table>
 				<div id="sum1">
 					<h1>Total:</h1>
+					<h1 id="totalaqui"></h1>
 				</div>
 			</div>
 		</div>
@@ -105,11 +106,12 @@
 			$(".price").each(function() {
 
 				var value = $(this).text();
-				alert(value);
+				
 				// add only if the value is number
 				if (!isNaN(value) && value.length != 0) {
 					sum += parseFloat(value);
-				}alert(sum);
+					document.getElementById("totalaqui").innerHTML = "$"+sum.toFixed(2);
+				}
 			});
 		}
 	</script>
