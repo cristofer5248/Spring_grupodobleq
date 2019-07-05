@@ -22,6 +22,9 @@ import javax.persistence.TemporalType;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
 @Table(name = "talleres")
 public class Taller implements Serializable {
@@ -38,22 +41,27 @@ public class Taller implements Serializable {
 	@Column(name = "create_att")
 	private Date createAt;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_tallerid")
 	private Cliente cliente;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "delegador")
 	private Usuario delegador;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "nombre_tallerid")
 	private NombreTaller nombreTaller;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "condicion_id")
 	private Condicion condicion;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "vehiculo_id")
 	private Vehiculo vehiculo;
@@ -62,8 +70,9 @@ public class Taller implements Serializable {
 	private List<Factura> factura;
 	
 	//en caso de error
+//	@JsonIgnoreProperties({"taller", "servicio"})
 	@OneToMany(mappedBy = "taller", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Flujo> flujo;
+	private List<Flujo> flujo = new ArrayList<>();
 	//solo comentarear
 	private Boolean emitidoa = true;
 	
@@ -72,7 +81,8 @@ public class Taller implements Serializable {
 	private Boolean texpress = false;
 
 	public Taller() {
-		factura = new ArrayList<Factura>();		
+		factura = new ArrayList<Factura>();
+		flujo = new ArrayList<Flujo>();
 		
 	}
 

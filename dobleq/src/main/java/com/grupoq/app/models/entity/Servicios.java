@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "servicios")
 public class Servicios implements Serializable {
@@ -21,14 +23,17 @@ public class Servicios implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	
 	@Column(name="nombre_servicio", nullable = false)
 	private String nombreServicio;
 	private Double precio;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "servicios_facturaid")
 	private List<Factura> factura;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="servicio_flujo")
 	private List<Flujo> flujo;

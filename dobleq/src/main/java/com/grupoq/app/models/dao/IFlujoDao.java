@@ -14,4 +14,8 @@ public interface IFlujoDao extends PagingAndSortingRepository<Flujo, Long> {
 	
 	public List<Flujo> findByTaller_Id(Long id);
 	
+	
+	
+	public List<Flujo> findByTaller_Cliente_Email(String id);
+	
 }

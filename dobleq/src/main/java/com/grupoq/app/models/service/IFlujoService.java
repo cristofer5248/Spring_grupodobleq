@@ -11,6 +11,10 @@ import com.grupoq.app.models.entity.Flujo;
 public interface IFlujoService {
 	
 	public List<Estado> findAllEstado();
+	
+	public Flujo findByOne(Long id);
+	
+	public List<Flujo> findByTaller_Cliente_Id(String id);
 
 	public Page<Flujo> findAll(Pageable page);
 	

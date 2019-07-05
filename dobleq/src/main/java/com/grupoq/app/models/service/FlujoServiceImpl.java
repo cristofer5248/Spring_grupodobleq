@@ -57,4 +57,14 @@ public class FlujoServiceImpl implements IFlujoService {
 		return (List<Estado>)estadoDao.findAll();
 	}
 
+	@Override
+	public List<Flujo> findByTaller_Cliente_Id(String id) {
+		return flujoDao.findByTaller_Cliente_Email(id);
+	}
+
+	@Override
+	public Flujo findByOne(Long id) {
+		return flujoDao.findById(id).orElse(null);
+	}
+
 }
