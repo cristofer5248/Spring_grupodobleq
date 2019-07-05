@@ -61,7 +61,8 @@ public class Taller implements Serializable {
 	@JoinColumn(name = "condicion_id")
 	private Condicion condicion;
 
-	@JsonIgnore
+//	si da error error es culpa de marlon
+//	@JsonIgnore 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "vehiculo_id")
 	private Vehiculo vehiculo;

@@ -26,8 +26,9 @@
 					<a th:if="${#request.isUserInRole('ADMIN')}"
 						class="btn btn-primary btn-xs"
 						th:href="@{'/taller/tallerform/' + ${cliente.id}}"
-						th:text="'Nueva asignacion'"></a> 
-						<a class="btn btn-primary btn-xs" th:if="${not #lists.isEmpty(taller)} AND ${#request.isUserInRole('USER')}" 
+						th:text="'Nueva asignacion'"></a> <a
+						class="btn btn-primary btn-xs"
+						th:if="${not #lists.isEmpty(taller)} AND ${#request.isUserInRole('USER')}"
 						th:href="@{'/factura/finalizar/' + ${taller.id}}"
 						th:text="'Finalizar factura'"></a>
 
@@ -54,6 +55,7 @@
 							<th>folio</th>
 							<th>descripción</th>
 							<th>cantidad</th>
+							<th class="price">precio</th>
 
 							<th>total</th>
 							<!-- 							<th sec:authorize="hasRole('ROLE_ADMIN')">ver</th> -->
@@ -65,8 +67,10 @@
 							<td th:text="${factura.id}"></td>
 							<td th:text="${factura.servicios.nombreServicio}"></td>
 							<td th:text="${factura.cantidad}"></td>
+							<td th:text="'$'+${factura.servicios.precio}"></td>
 
-							<td th:text="${factura.cantidad * factura.servicios.precio}"></td>
+							<td class="price"
+								th:text="'$'+${#numbers.formatDecimal(factura.cantidad * factura.servicios.precio,1,'DEFAULT',2,'DEFAULT')}"></td>
 							<!-- 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a -->
 							<!-- 								class="btn btn-primary btn-xs" -->
 							<!-- 								th:href="@{'/factura/ver/' + ${factura.id}}" th:text="'detalle'"></a></td> -->
@@ -79,12 +83,35 @@
 					</tbody>
 
 				</table>
-
+				<div id="sum1">
+					<h1>Total:</h1>
+				</div>
 			</div>
 		</div>
 
 	</div>
 
 	<footer th:replace="layout/layout :: footer"></footer>
+		<script>
+		$(document).ready(function() {
+			
+				calculateSum();
+			
+		});
+
+		function calculateSum() {
+			var sum = 0;
+			// iterate through each td based on class and add the values
+			$(".price").each(function() {
+
+				var value = $(this).text();
+				alert(value);
+				// add only if the value is number
+				if (!isNaN(value) && value.length != 0) {
+					sum += parseFloat(value);
+				}alert(sum);
+			});
+		}
+	</script>
 </body>
 </html>

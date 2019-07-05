@@ -100,10 +100,11 @@ public class TallerController {
 	}
 
 	@RequestMapping(value = "/activar_express/{param}", method = RequestMethod.GET)
-	public void activarTallerexpress(@PathVariable(value = "param") Long id) {
+	public String activarTallerexpress(@PathVariable(value = "param") Long id) {
 		Taller taller = tallerService.findByOne(id);
 		taller.setTexpress(false);
 		tallerService.save(taller);
+		return "redirect:/login";
 
 		
 	}
@@ -140,7 +141,7 @@ public class TallerController {
 		tallerService.delete(id);
 		flash.addFlashAttribute("success", "Requerimiento eliminado con éxito!");
 
-		return "redirect:/taller/ver";
+		return "login";
 	}
 
 	@Secured("ROLE_ADMIN")

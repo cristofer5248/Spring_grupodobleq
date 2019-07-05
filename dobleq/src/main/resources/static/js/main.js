@@ -22,6 +22,7 @@ function fire_ajax_submit() {
     let delegado = $('#feedback')
 	
 	const url2 = "/cargarflujows/"+username+"/pass/"+password;
+    console.log(url2);
 	//populate dropdown list wujuu
 	$.getJSON(url2,function(data){
 		var items =[];
@@ -32,14 +33,16 @@ function fire_ajax_submit() {
 		texpres=val.taller.texpress;
 		items.push("<tr>");
 		items.push("<td id=''"+key+"''>"+val.id+"</td>");
+		items.push("<td id=''"+key+"''>"+val.taller.vehiculo.modelo+"</td>");
 		items.push("<td id=''"+key+"''>"+val.estado.nombre+"</td>");
+		
 		items.push("<td id=''"+key+"''><img alt='No hay' src='/uploads/"+val.foto+"'/></td>");
 		items.push("</td>");
 	});
 	if(items.leght!=0){
 		alert(texpres);
 		if(texpres==true){
-		document.getElementById("buttonplaceform").action = "/activar_express/"+idt;
+		document.getElementById("buttonplaceform").action = "/taller/activar_express/"+idt;
 	     var element = document.createElement("button");
 	     element.appendChild(document.createTextNode("Aceptar!"));
 	     var page = document.getElementById("buttonplaceform");

@@ -19,7 +19,8 @@
 				<table class="table table-striped table-bordered">
 					<thead class="thead-inverse">
 						<tr>
-							<th sec:authorize="hasRole('ROLE_USER')">id</th>
+							
+							<th>username</th>
 							<th>nombre</th>
 							<th>apellido</th>
 							<th>email</th>
@@ -34,7 +35,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="usuario: ${usuario}">
-							<td th:text="${usuario.idu}"></td>
+							<td th:text="${usuario.username}"></td>
 							<td th:text="${usuario.nombre}"></td>
 							<td th:text="${usuario.apellidos}"></td>
 							<td th:text="${usuario.correo}"></td>
